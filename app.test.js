@@ -1,4 +1,4 @@
-const { greet, add, subtract } = require('./app')
+const { greet, add, subtract, multiply } = require('./app')
 
 describe('greet', () => {
   it('returns greeting with name for valid string', () => {
@@ -109,5 +109,48 @@ describe('subtract', () => {
 
   it('throws TypeError for boolean argument', () => {
     expect(() => subtract(true, 1)).toThrow(TypeError)
+  })
+})
+
+describe('multiply', () => {
+  it('multiplies two positive numbers', () => {
+    expect(multiply(2, 3)).toBe(6)
+  })
+
+  it('multiplies larger positive numbers', () => {
+    expect(multiply(4, 5)).toBe(20)
+  })
+
+  it('multiplies negative numbers', () => {
+    expect(multiply(-1, -2)).toBe(2)
+  })
+
+  it('multiplies by zero', () => {
+    expect(multiply(0, 5)).toBe(0)
+  })
+
+  it('multiplies decimal numbers', () => {
+    expect(multiply(1.5, 2)).toBe(3)
+  })
+
+  it('throws TypeError for string first argument', () => {
+    expect(() => multiply('2', 3)).toThrow(TypeError)
+    expect(() => multiply('2', 3)).toThrow('Both arguments must be numbers')
+  })
+
+  it('throws TypeError for string second argument', () => {
+    expect(() => multiply(2, '3')).toThrow(TypeError)
+  })
+
+  it('throws TypeError for null argument', () => {
+    expect(() => multiply(null, 2)).toThrow(TypeError)
+  })
+
+  it('throws TypeError for undefined argument', () => {
+    expect(() => multiply(1, undefined)).toThrow(TypeError)
+  })
+
+  it('throws TypeError for boolean argument', () => {
+    expect(() => multiply(true, 1)).toThrow(TypeError)
   })
 })
